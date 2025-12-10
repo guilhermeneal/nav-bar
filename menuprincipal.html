@@ -5,268 +5,290 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Plataforma do Estudante</title>
     <style>
-            * {
-              margin: 0;
-              padding: 0;
-              box-sizing: border-box;
-            }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-            :root {
-              color-scheme: light dark;
-              --primary: #005fa3;
-              --secondary: #004a80;
-              --bg-light: #f4f6f9;
-              --bg-dark: #223a2c;
-              --text-light: #333b3c;
-              --text-dark: #b4b3b3;
-            }
+      :root {
+        color-scheme: light dark;
+        --primary: #005fa3;
+        --secondary: #004a80;
+        --bg-light: #f4f6f9;
+        --bg-dark: #223a2c;
+        --text-light: #333b3c;
+        --text-dark: #b4b3b3;
+      }
 
-            body {
-              font-family: "Segoe UI", sans-serif;
-              background-color: light-dark(var(--bg-light), var(--bg-dark));
-              color: light-dark(var(--text-light), var(--text-dark));
-              display: flex;
-              min-height: 100vh;
-              padding-top: 50px;
-            }
-            .topinfobar {
-              width: 100%;
-              background-color: var(--primary);
-              color: white;
-              padding: 16px 20px;
-              font-weight: bold;
-              font-size: 15px;
-              position: fixed;
-              top: 0;
-              left: 0;
-              z-index: 1000;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            }
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: light-dark(var(--bg-light), var(--bg-dark));
+        color: light-dark(var(--text-light), var(--text-dark));
+        display: flex;
+        min-height: 100vh;
+        padding-top: 50px;
+      }
+      .topinfobar {
+        width: 100%;
+        background-color: var(--primary);
+        color: white;
+        padding: 16px 20px;
+        font-weight: bold;
+        font-size: 15px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-            .menu-toggle {
-              position: absolute;
-              left: 10px;
-              top: 50%;
-              transform: translateY(-50%);
-            }
+      .menu-toggle {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
 
-            #menu-checkbox {
-              display: none;
-            }
-            .sidebar {
-              width: 250px;
-              background: var(--primary);
-              color: white;
-              height: 100vh;
-              padding: 20px;
-              position: fixed;
-              top: 0;
-              left: 0;
-              transform: translateX(-100%);
-              transition: transform 0.3s ease;
-              z-index: 999;
-              overflow-y: auto;
-              scrollbar-width: none;
-            }
+      #menu-checkbox {
+        display: none;
+      }
+      .sidebar {
+        width: 250px;
+        background: var(--primary);
+        color: white;
+        height: 100vh;
+        padding: 20px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 999;
+        overflow-y: auto;
+        scrollbar-width: none;
+      }
 
-            #menu-checkbox:checked ~ .sidebar {
-              transform: translateX(0);
-            }
+      #menu-checkbox:checked ~ .sidebar {
+        transform: translateX(0);
+      }
 
-            .menu-list,
-            .submenu,
-            .submenusercicos {
-              list-style: none;
-              margin: 0;
-              padding: 0;
-            }
+      .menu-list,
+      .submenu,
+      .submenusercicos {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
 
-            .menu-list li,
-            .submenu li,
-            .submenusercicos li {
-              margin-bottom: 10px;
-              border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-              padding-bottom: 5px;
-            }
+      .menu-list li,
+      .submenu li,
+      .submenusercicos li {
+        margin-bottom: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding-bottom: 5px;
+      }
 
-            .menu-item,
-            .submenu-item,
-            details summary {
-              display: block;
-              padding: 10px;
-              color: white;
-              text-decoration: none;
-              font-weight: bold;
-              font-size: 16px;
-              line-height: 1.6;
-              transition: background-color 0.3s ease;
-              border-radius: 4px;
-            }
+      .menu-item,
+      .submenu-item,
+      details summary {
+        display: block;
+        padding: 10px;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 1.6;
+        transition: background-color 0.3s ease;
+        border-radius: 4px;
+      }
 
-            .menu-item:hover,
-            .submenu-item:hover,
-            details summary:hover {
-              background-color: var(--secondary);
-              border-radius: 4px;
-            }
+      .menu-item:hover,
+      .submenu-item:hover,
+      details summary:hover {
+        background-color: var(--secondary);
+        border-radius: 4px;
+      }
 
-            .submenu {
-              padding-left: 20px;
-            }
-            .topbar__user {
-              position: absolute;
-              right: 20px;
-              top: 50%;
-              transform: translateY(-50%);
-            }
+      .submenu {
+        padding-left: 20px;
+      }
+      .topbar__user {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
 
-            .user-menu {
-              position: relative;
-              display: inline-block;
-            }
+      .user-menu {
+        position: relative;
+        display: inline-block;
+      }
 
-            .user-trigger {
-              display: flex;
-              align-items: center;
-              cursor: pointer;
-              padding: 8px;
-              color: white;
-              border-radius: 6px;
-              transition: background 0.3s ease;
-            }
+      .user-trigger {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 8px;
+        color: white;
+        border-radius: 6px;
+        transition: background 0.3s ease;
+      }
 
-            .user-trigger:hover {
-              background: #003a66;
-            }
+      .user-trigger:hover {
+        background: #003a66;
+      }
 
-            .avatar-img {
-              border-radius: 50%;
-              width: 32px;
-              height: 32px;
-              margin-right: 8px;
-            }
+      .avatar-img {
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        margin-right: 8px;
+      }
 
-            .user-dropdown {
-              position: absolute;
-              top: calc(100% + 8px);
-              left: 50%; 
-              transform: translateX(-100%);
-              background: #ffffff;
-              color: #333;
-              padding: 15px;
-              border-radius: 8px;
-              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-              min-width: 260px;
-              z-index: 2000;
-            }
+      .user-dropdown {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 50%;
+        transform: translateX(-100%);
+        background: #ffffff;
+        color: #333;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        min-width: 260px;
+        z-index: 2000;
+      }
 
-            .user-course,
-            .user-email {
-              margin-bottom: 10px;
-              font-size: 14px;
-            }
+      .user-course,
+      .user-email {
+        margin-bottom: 10px;
+        font-size: 14px;
+      }
 
-            .user-actions {
-              display: flex;
-              flex-direction: column;
-              gap: 8px;
-            }
+      .user-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
 
-            .dropdown-item {
-              display: flex;
-              align-items: center;
-              padding: 8px;
-              color: white;
-              text-decoration: none;
-              border-radius: 4px;
-              transition: background 0.3s ease;
-            }
+      .dropdown-item {
+        display: flex;
+        align-items: center;
+        padding: 8px;
+        color: black;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background 0.3s ease;
+      }
+      .user-dropdown .dropdown-item {
+        display: flex;
+        align-items: center;
+        gap: 8px; 
+        color: #333; 
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background 0.3s ease;
+      }
 
-            .dropdown-item:hover {
-              background: rgba(255, 255, 255, 0.1);
-            }
+      .user-dropdown .dropdown-item:hover {
+        background: rgba(0, 0, 0, 0.05);
+      }
 
-            .logout {
-              color: #ffcccc;
-            }
+      .user-dropdown .icon {
+        font-size: 18px;
+        width: 20px;
+        text-align: center;
+        overflow: visible;
+      }
+      .dropdown-item:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
 
-            .icon {
-              margin-right: 8px;
-              font-size: 18px;
-            }
+      .logout {
+        color: #ffcccc;
+      }
 
-            .version {
-              display: block;
-              margin-top: 10px;
-              font-size: 12px;
-              opacity: 0.7;
-            }
-            main {
-              padding: 20px;
-              width: 100%;
-            }
+      .icon {
+        margin-right: 8px;
+        font-size: 18px;
+        display: inline-block;
+        width: 20px;
+        overflow: hidden;
+      }
 
-            .dashboard h1 {
-              color: #003366;
-              margin-bottom: 10px;
-            }
+      .version {
+        display: block;
+        margin-top: 10px;
+        font-size: 12px;
+        opacity: 0.7;
+      }
+      main {
+        padding: 20px;
+        width: 100%;
+      }
 
-            .painel {
-              background-color: white;
-              padding: 15px;
-              border-radius: 8px;
-              box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-              margin-bottom: 20px;
-            }
+      .dashboard h1 {
+        color: #003366;
+        margin-bottom: 10px;
+      }
 
-            .tabela-container {
-              max-height: 300px;
-              overflow-y: auto;
-              scrollbar-width: none;
-            }
+      .painel {
+        background-color: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
 
-            table {
-              width: 100%;
-              border-collapse: collapse;
-              margin-top: 10px;
-              border-radius: 8px;
-              overflow: hidden;
-              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-              background-color: light-dark(#efedea, black);
-            }
+      .tabela-container {
+        max-height: 300px;
+        overflow-y: auto;
+        scrollbar-width: none;
+      }
 
-            thead {
-              color: light-dark(#b4b3b3, black);
-              background: linear-gradient(120deg, #667eea 0%, #764ba2 100%);
-            }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: light-dark(#efedea, black);
+      }
 
-            th,
-            td {
-              padding: 10px;
-              text-align: left;
-              border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            }
-            .dashboard h1 {
-              color: #003366;
-              margin-bottom: 10px;
-              margin-top: 40px;
-            }
-            .user-dropdown {
-              position: absolute;
-              top: 100%;
-              left: 100%;
-              margin-left: 10px;
-              background: #ffffff;
-              color: #333;
-              padding: 15px;
-              border-radius: 8px;
-              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-              min-width: 250px;
-              z-index: 2000;
-            }
-            @media (max-width: 768px) {
+      thead {
+        color: light-dark(#b4b3b3, black);
+        background: linear-gradient(120deg, #667eea 0%, #764ba2 100%);
+      }
+
+      th,
+      td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+      .dashboard h1 {
+        color: #003366;
+        margin-bottom: 10px;
+        margin-top: 40px;
+      }
+      .user-dropdown {
+        position: absolute;
+        top: 100%;
+        left: 100%;
+        margin-left: 10px;
+        background: #ffffff;
+        color: #333;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        min-width: 250px;
+        z-index: 2000;
+      }
+      @media (max-width: 768px) {
         .sidebar {
           width: 80%;
           max-width: 300px;
@@ -332,13 +354,13 @@
             <p class="user-email">diretor.tpsi.tesp@mail.uma.pt</p>
             <nav class="user-actions">
               <a href="#" class="dropdown-item">
-                <span class="icon">🔒</span> Alterar Password
+                <span class="icon">🔒 Alterar Password</span>
               </a>
               <a href="#" class="dropdown-item">
-                <span class="icon">📷</span> Alterar Foto
+                <span class="icon">📷 Alterar Foto</span>
               </a>
               <a href="login.html" class="dropdown-item logout">
-                <span class="icon">⏻</span> Sair
+                <span class="icon">🚪 Sair</span>
               </a>
             </nav>
             <small class="version">InfoAlunos - v3.1.4</small>
